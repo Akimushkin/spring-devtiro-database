@@ -1,5 +1,6 @@
 package com.devtiro.database.dao.impl;
 
+import com.devtiro.database.TestDataUtil;
 import com.devtiro.database.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,7 +8,6 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.devtiro.database.dao.impl.BookDaoImpl;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.mockito.ArgumentMatchers.eq;
@@ -23,11 +23,7 @@ public class BookDaoImplTest {
 
     @Test
     public void testThatCreateBookGeneratesCorrectSql(){
-        Book book = Book.builder()
-                .isbn("978-1-2345-6789-0")
-                .title("The Shadaw in the Artic")
-                .authorId(1L)
-                .build();
+        Book book = TestDataUtil.createTestBook();
         underTest.create(book);
 
         verify(jdbcTemplate).update(
