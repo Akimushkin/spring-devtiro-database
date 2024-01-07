@@ -25,7 +25,7 @@ public class AuthorDaoImplIntegrationTests {
 
     @Test
     public void testThatAuthorCanBeCreatedAndRecalled(){
-        Author author = TestDataUtil.createTestAuthor();
+        Author author = TestDataUtil.createTestAuthorA();
         underTest.create(author);
         Optional<Author> result = underTest.findOne(author.getId());
         assertThat(result).isPresent();

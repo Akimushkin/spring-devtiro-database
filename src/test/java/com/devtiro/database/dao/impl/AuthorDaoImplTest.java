@@ -9,12 +9,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.annotation.DirtiesContext;
+
+import java.util.List;
+import java.util.Optional;
+
 
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AuthorDaoImplTest {
     @Mock
     private JdbcTemplate jdbcTemplate;
@@ -24,7 +30,7 @@ public class AuthorDaoImplTest {
 
     @Test
     public void testThatCreateAuthorGeneratesCorrectSql(){
-        Author author = TestDataUtil.createTestAuthor();
+        Author author = TestDataUtil.createTestAuthorA();
         underTest.create(author);
 
         verify(jdbcTemplate).update(
@@ -44,4 +50,27 @@ public class AuthorDaoImplTest {
                 );
     }
 
+    @Test
+    public void testThatFindManyAuthorsGenerateCorrectSql(){
+        underTest.find();
+        verify(jdbcTemplate).query(
+                eq("SELECT id, name, age FROM authors"),
+                ArgumentMatchers.<AuthorDaoImpl.AuthorRowMapper>any());
+    }
+
+    @Test
+    public void testThatMultipleAuthorsCanBeCreatedAndRecalled(){
+        Author authorA = TestDataUtil.createTestAuthorA();
+        underTest.create(authorA);
+        Author authorB = TestDataUtil.createTestAuthorB();
+        underTest.create(authorB);
+        Author authorC = TestDataUtil.createTestAuthorC();
+        underTest.create(authorC);
+
+        List<Author> result = underTest.find();
+        assertThat(result)
+                .hasSize( 3)
+                ;//.containsExactly(authorA, authorB, authorC);
+
+    }
 }
