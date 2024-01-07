@@ -1,7 +1,6 @@
 package com.devtiro.database.dao.impl;
 
 import com.devtiro.database.dao.BookDao;
-import com.devtiro.database.domain.Author;
 import com.devtiro.database.domain.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -39,6 +38,13 @@ public class BookDaoImpl implements BookDao {
         return results.stream().findFirst();
     }
 
+    @Override
+    public List<Book> find() {
+        return jdbcTemplate.query(
+                "SELECT isbn, title, author_id FROM books",
+                new BookDaoImpl.BookRowMapper()
+        );
+    }
 
 
     public static class BookRowMapper implements RowMapper<Book> {

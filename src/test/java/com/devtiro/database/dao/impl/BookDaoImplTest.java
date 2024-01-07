@@ -23,7 +23,7 @@ public class BookDaoImplTest {
 
     @Test
     public void testThatCreateBookGeneratesCorrectSql(){
-        Book book = TestDataUtil.createTestBook();
+        Book book = TestDataUtil.createTestBookA();
         underTest.create(book);
 
         verify(jdbcTemplate).update(
@@ -43,6 +43,14 @@ public class BookDaoImplTest {
                 ArgumentMatchers.<BookDaoImpl.BookRowMapper>any(),
                 eq("978-1-2345-6789-0")
         );
+    }
+
+    @Test
+    public void testThatFindManyBooksGenerateCorrectSql(){
+        underTest.find();
+        verify(jdbcTemplate).query(
+                eq("SELECT isbn, title, author_id FROM books"),
+                ArgumentMatchers.<AuthorDaoImpl.AuthorRowMapper>any());
     }
 
 }
