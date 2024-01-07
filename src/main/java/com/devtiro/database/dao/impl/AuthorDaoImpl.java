@@ -16,7 +16,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public AuthorDaoImpl(JdbcTemplate jdbcTemplate) {
+    public AuthorDaoImpl(final JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

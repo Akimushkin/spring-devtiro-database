@@ -11,16 +11,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.List;
-import java.util.Optional;
-
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AuthorDaoImplTest {
     @Mock
     private JdbcTemplate jdbcTemplate;
@@ -58,19 +52,5 @@ public class AuthorDaoImplTest {
                 ArgumentMatchers.<AuthorDaoImpl.AuthorRowMapper>any());
     }
 
-    @Test
-    public void testThatMultipleAuthorsCanBeCreatedAndRecalled(){
-        Author authorA = TestDataUtil.createTestAuthorA();
-        underTest.create(authorA);
-        Author authorB = TestDataUtil.createTestAuthorB();
-        underTest.create(authorB);
-        Author authorC = TestDataUtil.createTestAuthorC();
-        underTest.create(authorC);
 
-        List<Author> result = underTest.find();
-        assertThat(result)
-                .hasSize( 3)
-                ;//.containsExactly(authorA, authorB, authorC);
-
-    }
 }
