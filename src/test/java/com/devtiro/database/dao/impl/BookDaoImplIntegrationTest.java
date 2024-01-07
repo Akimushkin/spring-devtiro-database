@@ -60,7 +60,7 @@ public class BookDaoImplIntegrationTest {
         List<Book> result = underTest.find();
         assertThat(result)
                 .hasSize( 3)
-        ;//.containsExactly(authorA, authorB, authorC);
+                .containsExactly(bookA, bookB, bookC);
 
     }
 

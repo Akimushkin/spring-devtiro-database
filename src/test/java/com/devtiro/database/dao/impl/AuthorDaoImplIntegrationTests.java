@@ -46,7 +46,7 @@ public class AuthorDaoImplIntegrationTests {
 
         List<Author> result = underTest.find();
         assertThat(result)
-                .hasSize( 3)
-        ;//.containsExactly(authorA, authorB, authorC);
+            .hasSize( 3)
+            .containsExactly(authorA, authorB, authorC);
 
     }}
