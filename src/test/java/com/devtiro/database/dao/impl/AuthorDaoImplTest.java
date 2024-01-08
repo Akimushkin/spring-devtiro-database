@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.annotation.DirtiesContext;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -50,6 +49,17 @@ public class AuthorDaoImplTest {
         verify(jdbcTemplate).query(
                 eq("SELECT id, name, age FROM authors"),
                 ArgumentMatchers.<AuthorDaoImpl.AuthorRowMapper>any());
+    }
+
+    @Test
+    public void testThatUpdateAuthorGenerateCorrectSql(){
+        Author author = TestDataUtil.createTestAuthorA();
+        underTest.update(author.getId(), author);
+
+        verify(jdbcTemplate).update(
+        "UPDATE authors SET id = ?, name = ?, age = ? WHERE id = ?",
+        1L, "Abigail Rose", 80, 1L
+        );
     }
 
 
