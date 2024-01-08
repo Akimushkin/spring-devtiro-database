@@ -54,7 +54,7 @@ public class BookDaoImplTest {
     }
 
     @Test
-    public void testThatUpdateAuthorGenerateCorrectSql(){
+    public void testThatUpdateBookGenerateCorrectSql(){
         Book book = TestDataUtil.createTestBookA();
         underTest.update(book.getIsbn(), book);
 
