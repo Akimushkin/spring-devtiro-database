@@ -60,7 +60,7 @@ public class BookRepositoryIntegrationTests {
         Author author = TestDataUtil.createTestAuthorA();
 
         Book bookA = TestDataUtil.createTestBookA(author);
-        underTest.save(bookA);
+        bookA = underTest.save(bookA);
         bookA.setTitle("UPDATED");
         underTest.save(bookA);
         Optional<Book> result = underTest.findById(bookA.getIsbn());

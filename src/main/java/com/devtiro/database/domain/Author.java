@@ -1,14 +1,13 @@
 package com.devtiro.database.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "authors")
@@ -20,4 +19,24 @@ public class Author {
     private String name;
 
     private Integer age;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (!id.equals(author.id)) return false;
+        if (!name.equals(author.name)) return false;
+        return age.equals(author.age);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + age.hashCode();
+        return result;
+    }
 }
