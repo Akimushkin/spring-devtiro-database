@@ -1,4 +1,4 @@
-package com.devtiro.database.domain;
+package com.devtiro.database.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "books")
-public class Book {
+public class BookEntity {
     @Id
     private  String isbn;
 
@@ -18,17 +18,17 @@ public class Book {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
-    private Author author;
+    private AuthorEntity authorEntity;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Book book = (Book) o;
+        BookEntity bookEntity = (BookEntity) o;
 
-        if (!isbn.equals(book.isbn)) return false;
-        return title.equals(book.title);
+        if (!isbn.equals(bookEntity.isbn)) return false;
+        return title.equals(bookEntity.title);
     }
 
     @Override

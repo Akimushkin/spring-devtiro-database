@@ -1,4 +1,4 @@
-package com.devtiro.database.domain;
+package com.devtiro.database.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "authors")
-public class Author {
+public class AuthorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_id_seq")
     private Long id;
@@ -25,11 +25,11 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        AuthorEntity authorEntity = (AuthorEntity) o;
 
-        if (!id.equals(author.id)) return false;
-        if (!name.equals(author.name)) return false;
-        return age.equals(author.age);
+        if (!id.equals(authorEntity.id)) return false;
+        if (!name.equals(authorEntity.name)) return false;
+        return age.equals(authorEntity.age);
     }
 
     @Override
