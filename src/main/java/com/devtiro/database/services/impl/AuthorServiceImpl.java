@@ -6,11 +6,11 @@ import com.devtiro.database.services.AuthorService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthorServieImpl implements AuthorService {
+public class AuthorServiceImpl implements AuthorService {
 
     AuthorRepository authorRepository;
 
-    public AuthorServieImpl(AuthorRepository authorRepository) {
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 

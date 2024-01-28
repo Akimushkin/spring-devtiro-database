@@ -1,5 +1,7 @@
 package com.devtiro.database;
 
+import com.devtiro.database.domain.dto.AuthorDto;
+import com.devtiro.database.domain.dto.BookDto;
 import com.devtiro.database.domain.entities.AuthorEntity;
 import com.devtiro.database.domain.entities.BookEntity;
 
@@ -35,7 +37,7 @@ public final class TestDataUtil {
 
     }
 
-    public static BookEntity createTestBookA(final AuthorEntity authorEntity) {
+    public static BookEntity createTestBookEntityA(final AuthorEntity authorEntity) {
         return BookEntity.builder()
                 .isbn("978-1-2345-6789-0")
                 .title("The Shadow in the Attic")
@@ -43,7 +45,7 @@ public final class TestDataUtil {
                 .build();
     }
 
-    public static BookEntity createTestBookB(final AuthorEntity authorEntity) {
+    public static BookEntity createTestBookEntityB(final AuthorEntity authorEntity) {
         return BookEntity.builder()
                 .isbn("978-1-2345-6789-1")
                 .title("Beyond the Horizon")
@@ -51,11 +53,19 @@ public final class TestDataUtil {
                 .build();
     }
 
-    public static BookEntity createTestBookC(final AuthorEntity authorEntity) {
+    public static BookEntity createTestBookEntityC(final AuthorEntity authorEntity) {
         return BookEntity.builder()
                 .isbn("978-1-2345-6789-2")
                 .title("The Last Ember")
                 .authorEntity(authorEntity)
+                .build();
+    }
+
+    public static BookDto createTestBookDtoA(final AuthorDto author) {
+        return BookDto.builder()
+                .isbn("978-1-2345-6789-2")
+                .title("The Last Ember")
+                .author(author)
                 .build();
     }
 }
