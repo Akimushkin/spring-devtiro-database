@@ -27,7 +27,7 @@ public class AuthorEntityRepositoryIntegrationTests {
 
     @Test
     public void testThatAuthorCanBeCreatedAndRecalled(){
-        AuthorEntity authorEntity = TestDataUtil.createTestAuthorA();
+        AuthorEntity authorEntity = TestDataUtil.createTestAuthorEntityA();
         underTest.save(authorEntity);
         Optional<AuthorEntity> result = underTest.findById(authorEntity.getId());
         assertThat(result).isPresent();
@@ -36,7 +36,7 @@ public class AuthorEntityRepositoryIntegrationTests {
 
     @Test
     public void testThatMultipleAuthorsCanBeCreatedAndRecalled(){
-        AuthorEntity authorEntityA = TestDataUtil.createTestAuthorA();
+        AuthorEntity authorEntityA = TestDataUtil.createTestAuthorEntityA();
         underTest.save(authorEntityA);
         AuthorEntity authorEntityB = TestDataUtil.createTestAuthorB();
         underTest.save(authorEntityB);
@@ -53,7 +53,7 @@ public class AuthorEntityRepositoryIntegrationTests {
     @Test
     public void TestThatAuthorCanBeUpdated()
     {
-        AuthorEntity authorEntityA = TestDataUtil.createTestAuthorA();
+        AuthorEntity authorEntityA = TestDataUtil.createTestAuthorEntityA();
         underTest.save(authorEntityA);
         authorEntityA.setName("UPDATED");
         underTest.save(authorEntityA);
@@ -65,7 +65,7 @@ public class AuthorEntityRepositoryIntegrationTests {
     @Test
     public void TestThatAuthorCanBeDeleted()
     {
-        AuthorEntity authorEntityA = TestDataUtil.createTestAuthorA();
+        AuthorEntity authorEntityA = TestDataUtil.createTestAuthorEntityA();
         underTest.save(authorEntityA);
         underTest.delete(authorEntityA);
         Optional<AuthorEntity> result = underTest.findById(authorEntityA.getId());
@@ -75,7 +75,7 @@ public class AuthorEntityRepositoryIntegrationTests {
 
     @Test
     public void TestThatGetAuthorsWithAgeLessThan() {
-        AuthorEntity testAuthorAEntity = TestDataUtil.createTestAuthorA();
+        AuthorEntity testAuthorAEntity = TestDataUtil.createTestAuthorEntityA();
         testAuthorAEntity = underTest.save(testAuthorAEntity);
         AuthorEntity testAuthorBEntity = TestDataUtil.createTestAuthorB();
         testAuthorBEntity = underTest.save(testAuthorBEntity);
@@ -88,7 +88,7 @@ public class AuthorEntityRepositoryIntegrationTests {
 
     @Test
     public void TestThatGetAuthorsWithAgeGreaterThan() {
-        AuthorEntity testAuthorAEntity = TestDataUtil.createTestAuthorA();
+        AuthorEntity testAuthorAEntity = TestDataUtil.createTestAuthorEntityA();
         testAuthorAEntity = underTest.save(testAuthorAEntity);
         AuthorEntity testAuthorBEntity = TestDataUtil.createTestAuthorB();
         testAuthorBEntity = underTest.save(testAuthorBEntity);

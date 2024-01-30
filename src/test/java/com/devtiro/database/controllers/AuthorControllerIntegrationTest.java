@@ -36,7 +36,7 @@ public class AuthorControllerIntegrationTest {
 
     @Test
     public void testThatCreateAuthorSuccessfullyReturnHttp201Created() throws Exception {
-        AuthorEntity testAuthorA = TestDataUtil.createTestAuthorA();
+        AuthorEntity testAuthorA = TestDataUtil.createTestAuthorEntityA();
         testAuthorA.setId(null);
         String authorJson = objectMapper.writeValueAsString(testAuthorA);
 
@@ -52,7 +52,7 @@ public class AuthorControllerIntegrationTest {
 
     @Test
     public void testThatCreateAuthorSuccessfullyReturnCreatedAuthor() throws Exception {
-        AuthorEntity testAuthorA = TestDataUtil.createTestAuthorA();
+        AuthorEntity testAuthorA = TestDataUtil.createTestAuthorEntityA();
         testAuthorA.setId(null);
         String authorJson = objectMapper.writeValueAsString(testAuthorA);
 
@@ -83,7 +83,7 @@ public class AuthorControllerIntegrationTest {
 
     @Test
     public void testThatAuthorsReturnsListOfAuthors() throws Exception {
-        AuthorEntity testAuthorEntityA = TestDataUtil.createTestAuthorA();
+        AuthorEntity testAuthorEntityA = TestDataUtil.createTestAuthorEntityA();
         authorService.createAuthor(testAuthorEntityA);
 
         mockMvc.perform(
